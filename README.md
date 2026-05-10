@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginbig.png" width="800" />
+</div>
+
 # NIAH-Homogenization-Abaqus
 An Abaqus plug-in for asymptotic homogenization of periodic microstructures in Abaqus-Python
 
