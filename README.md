@@ -1,11 +1,11 @@
-<div align="center">
-<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginbig.png" width="800" />
-</div>
-
 # NIAH-Homogenization-Abaqus
 An Abaqus plug-in for asymptotic homogenization of periodic microstructures in Abaqus-Python
 
 This tool seamlessly integrates the generation of Periodic Boundary Conditions (PBCs), macroscopic load case organization, and effective stiffness extraction into a single, user-friendly workflow within the commercial finite element environment.
+
+<div align="center">
+<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginbig.png" width="800" />
+</div>
 
 ## ✨ Features
 
@@ -35,6 +35,10 @@ This tool seamlessly integrates the generation of Periodic Boundary Conditions (
 Access the tool via the top menu bar in Abaqus/CAE:
 	Plug-ins → NIAH Homogenization
 	(Screenshot of the plug-in interface)
+	
+<div align="center">
+<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginGUI.png" width="800" />
+</div>
 
 1. Model Preparation
 	Prepare a standard Abaqus input file (.inp) containing your meshed microstructure (e.g., beam_octet.inp).
@@ -57,7 +61,11 @@ Access the tool via the top menu bar in Abaqus/CAE:
 		Homogenization Solver: After pre-processing is complete, run the solver. The computation will proceed automatically in the background. Upon completion, 
 			a .txt file containing the equivalent effective properties (Stiffness Tensor) will be generated in the "your input file directory\\NIAH_CH_txt".
 		Stiffness Visualization: (Under Development / Coming Soon) A standalone module to generate 3D directional Young's modulus distribution surfaces and 2D radar charts for ABD matrices.
-		
+
+<div align="center">
+<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/visualizationGUI.png" width="800" />
+</div>
+
 ## 📄 CitationIf 
 
 you find this plug-in helpful in your research, please consider citing our work:
