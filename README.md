@@ -72,7 +72,7 @@ you find this plug-in helpful in your research, please consider citing our work:
 
 @article{YourCitationKey2026,
   title={A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations},
-  author={Liu, Zhihui and others},
+  author={Liu, Zhihui Nie, Yinghao and Niu, Bin},
   journal={Composite Structures},
   year={2026},
   publisher={Elsevier}
