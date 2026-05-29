@@ -11,7 +11,7 @@ This tool seamlessly integrates the generation of Periodic Boundary Conditions (
 
 - **Automated PBC Generation:** Systematically identifies and pairs boundary nodes, generating necessary linear equation constraints.
 - **End-to-End Homogenization Analysis:** Implements the "three-step procedure" to evaluate effective mechanical properties.
-- **Transverse Shear Stiffness Evaluation:** Employs non-homogeneous PBCs to capture the transverse shear stiffness (K) for Reissner–Mindlin plate models.
+- **Transverse Shear Stiffness Evaluation:** Employs non-homogeneous PBCs to capture the transverse shear stiffness (Q) for Reissner–Mindlin plate models.
 - **Broad Element Support:** Highly compatible with 3D solid, beam, and shell Representative Volume Elements (RVEs).
 - **Stiffness Extraction & Visualization:** Automatically assembles equivalent constitutive matrices (Visualization module coming soon).
 
