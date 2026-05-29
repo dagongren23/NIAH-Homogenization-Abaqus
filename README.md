@@ -71,7 +71,7 @@ Access the tool via the top menu bar in Abaqus/CAE:
 you find this plug-in helpful in your research, please consider citing our work:
 
 @article{YourCitationKey2026,
-  title={A computational framework for asymptotic homogenization of periodic microstructures: unified implementation for three-dimensional and Reissner–Mindlin plate homogenization},
+  title={A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations},
   author={Liu, Zhihui and others},
   journal={Composite Structures},
   year={2026},
