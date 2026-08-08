@@ -41,4 +41,3 @@ class NIAHForm(AFXForm):
         self.runPreKw = AFXBoolKeyword(self.cmd, 'run_pre', AFXBoolKeyword.TRUE_FALSE, True)
         self.runSolverKw = AFXBoolKeyword(self.cmd, 'run_solver', AFXBoolKeyword.TRUE_FALSE, True)
         self.resumeSolverKw = AFXBoolKeyword(self.cmd, 'resume_solver', AFXBoolKeyword.TRUE_FALSE, True)
-        self.runVisKw = AFXBoolKeyword(self.cmd, 'run_vis', AFXBoolKeyword.TRUE_FALSE, True)

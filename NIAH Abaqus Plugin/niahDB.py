@@ -171,9 +171,6 @@ RsgCheckButton(p='GB_workflow', text='Resume completed solver jobs',
 RsgLabel(p='GB_workflow',
          text='Reuse jobs only when INP hash, successful STA and ODB all match.',
          useBoldFont=False)
-RsgCheckButton(p='GB_workflow', text='Run Stiffness visualization',
-               keyword='run_vis', default=True)
-
 RsgLabel(p='GB_workflow',
          text='Run only the selected stages of the NIAH workflow.',
          useBoldFont=False)

@@ -209,8 +209,24 @@ def _tie_relations(model, relations, dofs, name_prefix):
 
 
 def _tie_corner_sets(model, relations, dofs, name_prefix):
+    """Tie corner sets from supported topology-relation tuple layouts.
+
+    Three-dimensional and shear helpers return
+    ``(set_a, set_b, label_a, label_b)``.  The homogeneous plate helper adds
+    a leading free-surface name for diagnostics and therefore returns
+    ``(surface_name, set_a, set_b, label_a, label_b)``.  The surface name is
+    not an Abaqus set and must never be written into an equation term.
+    """
     for relation_index, relation in enumerate(relations, 1):
-        set_a, set_b = relation[0], relation[1]
+        if len(relation) == 4:
+            set_a, set_b = relation[0], relation[1]
+        elif len(relation) == 5:
+            set_a, set_b = relation[1], relation[2]
+        else:
+            raise ValueError(
+                'Unsupported corner relation with %d fields: %r.' %
+                (len(relation), relation)
+            )
         for dof in dofs:
             _add_equation(
                 model,

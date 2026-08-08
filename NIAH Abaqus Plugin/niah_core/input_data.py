@@ -43,7 +43,6 @@ def get_default_params():
         run_pre=True,
         run_solver=True,
         resume_solver=True,
-        run_vis=True,
     )
 
 

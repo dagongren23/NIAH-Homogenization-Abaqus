@@ -13,8 +13,10 @@ import traceback
 # Ensure the plugin root and its niah_core package are importable even if Abaqus changes cwd.
 _THIS_FILE = os.path.abspath(__file__)
 _PLUGIN_DIR = os.path.dirname(_THIS_FILE)
-if _PLUGIN_DIR not in sys.path:
-    sys.path.insert(0, _PLUGIN_DIR)
+_CORE_DIR = os.path.join(_PLUGIN_DIR, "niah_core")
+for _p in [_PLUGIN_DIR, _CORE_DIR]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 from niah_core.input_data import get_default_params, validate_and_build_runtime_input
 
@@ -46,9 +48,12 @@ def run_niah_plugin(partname='honeycomb_plane_shell_homo',
                     run_pre=True,
                     run_solver=True,
                     resume_solver=True,
-                    run_vis=True):
+                    run_vis=None):
     """
     Function called directly by the RSG dialog.
+
+    ``run_vis`` is retained only so older scripts using this keyword continue
+    to run. Visualization is provided separately by the Python 3 utility.
     """
     params = get_default_params()
     params.update(dict(
@@ -71,7 +76,6 @@ def run_niah_plugin(partname='honeycomb_plane_shell_homo',
         run_pre=bool(run_pre),
         run_solver=bool(run_solver),
         resume_solver=bool(resume_solver),
-        run_vis=bool(run_vis),
     ))
     return run_pipeline(params)
 
