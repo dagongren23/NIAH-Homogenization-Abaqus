@@ -209,6 +209,27 @@ tempCodeRunnerFile.py
 # PyPI configuration file
 .pypirc
 
+# NIAH release hygiene
+backup/
+**/backup/
+delete/
+**/delete/
+.idea/
+*.iml
+*.odb
+*.lck
+*.dat
+*.msg
+*.sta
+*.sim
+*.prt
+*.com
+*.ipm
+*.rpy*
+*.rec
+*.jnl
+niah_workbench/
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

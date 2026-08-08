@@ -1,0 +1,10 @@
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+reference_outputs/txt_results/*.txt whitespace=-blank-at-eol,-blank-at-eof
+*.csv text eol=lf
+*.cff text eol=lf
+*.inp text eol=lf whitespace=-blank-at-eol,-blank-at-eof
+*.svg text eol=lf whitespace=-blank-at-eol,-blank-at-eof
+*.xlsx binary
+*.png binary

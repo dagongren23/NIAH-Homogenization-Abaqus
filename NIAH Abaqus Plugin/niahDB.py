@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from rsg.rsgGui import *
 from abaqusConstants import INTEGER, FLOAT
 
@@ -89,7 +90,7 @@ RsgTextField(p='GB_mat', fieldType='Float', ncols=10,
              keyword='material_E', default='1.0')
 
 RsgTextField(p='GB_mat', fieldType='Float', ncols=10,
-             labelText='Poisson ratio ν',
+             labelText='Poisson ratio',
              keyword='material_v', default='0.3')
 
 RsgTextField(p='GB_mat', fieldType='Float', ncols=10,
@@ -165,6 +166,11 @@ RsgLabel(p='GB_workflow',
 
 RsgCheckButton(p='GB_workflow', text='Run Homogenization solver',
                keyword='run_solver', default=True)
+RsgCheckButton(p='GB_workflow', text='Resume completed solver jobs',
+               keyword='resume_solver', default=True)
+RsgLabel(p='GB_workflow',
+         text='Reuse jobs only when INP hash, successful STA and ODB all match.',
+         useBoldFont=False)
 RsgCheckButton(p='GB_workflow', text='Run Stiffness visualization',
                keyword='run_vis', default=True)
 

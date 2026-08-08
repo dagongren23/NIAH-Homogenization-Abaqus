@@ -1,83 +1,95 @@
-# NIAH-Homogenization-Abaqus
-An Abaqus plug-in for asymptotic homogenization of periodic microstructures in Abaqus-Python
+# NIAH Homogenization for Abaqus
 
-This tool seamlessly integrates the generation of Periodic Boundary Conditions (PBCs), macroscopic load case organization, and effective stiffness extraction into a single, user-friendly workflow within the commercial finite element environment.
+A unified, open-source Abaqus–Python plug-in that integrates established three-dimensional periodic homogenization and Reissner–Mindlin plate homogenization formulations in one automated workflow.
 
-<div align="center">
-<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginbig.png" width="800" />
-</div>
+The repository provides the complete readable homogenization-kernel source, manuscript input models, reference progress logs, effective-stiffness TXT outputs, processed validation workbooks, and a case-specific execution guide. Abaqus itself is proprietary software and is not included.
 
-## ✨ Features
+## Capabilities
 
-- **Automated PBC Generation:** Systematically identifies and pairs boundary nodes, generating necessary linear equation constraints.
-- **End-to-End Homogenization Analysis:** Implements the "three-step procedure" to evaluate effective mechanical properties.
-- **Transverse Shear Stiffness Evaluation:** Employs non-homogeneous PBCs to capture the transverse shear stiffness (Q) for Reissner–Mindlin plate models.
-- **Broad Element Support:** Highly compatible with 3D solid, beam, and shell Representative Volume Elements (RVEs).
-- **Stiffness Extraction & Visualization:** Automatically assembles equivalent constitutive matrices (Visualization module coming soon).
+- automated boundary classification, deterministic opposite-node matching, and equation-based periodic constraints;
+- 3D effective elastic stiffness recovery for solid, beam, shell, and supported mixed beam/shell models;
+- plate extensional, coupling, bending, and diagonal transverse-shear stiffness recovery;
+- Part-mode handling for uniform-property meshes and Model-mode handling for input files containing mixed elements or multiple section definitions;
+- restart-aware load-case execution and recoverable output cleanup;
+- standalone stiffness-result reading and directional-property visualization;
+- non-Abaqus unit/static tests for the numerical helpers, topology logic, resume metadata, and cleanup policy.
 
-## 🛠️ Tested Environment
+## Repository layout
 
-- **Abaqus:** 2020 (Highly likely compatible with 2017-2022 versions)
-- **Python:** 2.7 (Abaqus built-in environment)
+```text
+NIAH Abaqus Plugin/                 Complete readable plug-in source
+examples/input_files/               Manuscript and convergence-study INP files
+reference_outputs/logs/             Recorded preprocessing/solver logs
+reference_outputs/txt_results/      Effective stiffness reference outputs
+reference_outputs/statistics/       Comparison and validation workbooks
+reference_outputs/structural_data/  Structure-level CSV data
+reproducibility/                    Run guide, protocol, and checksums
+docs/                               Provenance audit and third-party notice
+NIAH Abaqus Plugin/tests/           Ordinary Python tests that do not start Abaqus
+```
 
-## 📥 Installation
+## Tested environment
 
-1. Clone or download this repository.
-2. Copy the entire plugin folder into your Abaqus plugins directory. Typically, this is located at:
+- Abaqus/CAE 2020;
+- Abaqus built-in Python 2.7 for the plug-in kernel;
+- Windows 10 Professional, 64-bit;
+- 13th Gen Intel Core i7-13700KF, 32 GB RAM;
+- eight solver CPUs for the supplied reference runs.
+
+The standalone visualization utility uses Python 3 with NumPy, Matplotlib, Numba, and Tkinter.
+
+## Installation
+
+1. Clone or download the repository.
+2. Copy the complete `NIAH Abaqus Plugin` directory into the Abaqus/CAE plug-ins directory, for example:
+
    ```text
    C:\SIMULIA\CAE\plugins\2020\
-   (Note: The exact path may vary depending on your Abaqus installation directory).
    ```
+
 3. Restart Abaqus/CAE.
+4. Open `Plug-ins > NIAH Homogenization`.
 
-## 🚀 Usage
+Do not copy only selected `.py` files: the plug-in depends on the complete `niah_core` directory, including `periodic_mesh.py`.
 
-Access the tool via the top menu bar in Abaqus/CAE:
-	Plug-ins → NIAH Homogenization
-	(Screenshot of the plug-in interface)
-	
-<div align="center">
-<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/pluginGUI.png" width="800" />
-</div>
+## Reproducing a manuscript case
 
-1. Model Preparation
-	Prepare a standard Abaqus input file (.inp) containing your meshed microstructure (e.g., beam_octet.inp).
-		Geometric Requirements: The unit cell must be symmetric with respect to the Cartesian coordinate axes. Nodes on opposite boundary surfaces must be perfectly paired (1-to-1 correspondence), and the boundary faces must be parallel to the orthogonal coordinate system.
-		Property Definitions: 
-			For structures with uniform material properties, the .inp file only needs to contain the mesh discretization.
-			For heterogeneous configurations involving multiple element types or complex section profiles, the input file must include the complete assembly and material definitions (which can be readily exported via the Abaqus GUI).
+1. Open `reproducibility/NIAH_case_run_guide.xlsx` and locate the required case.
+2. Use the listed INP file from `examples/input_files` without renumbering its nodes.
+3. Select the listed analysis type, preprocessing mode, primary element type, eight CPUs, and a mesh tolerance of `1.0E-3`.
+4. Choose an existing node as the translational anchor and enter its exact coordinates.
+5. Run preprocessing and homogenization.
+6. Compare the generated TXT result with the corresponding file in `reference_outputs/txt_results` and inspect the recorded progress log.
 
-2. GUI Configuration
-	Through the plug-in GUI, specify the following parameters:
-		File Path: Directory of the prepared .inp file.
-		Analysis Type: Choose between 3D homogenization or Shell homogenization.
-		Primary Element Type: The main element type used in your mesh (e.g., C3D8, B31, S3).
-		Reference Node: Coordinates of the rigid reference node.
-		Non-periodic Directions: (Required only for plate/shell homogenization).
-		
-3. Execution Steps
-	Once the GUI is configured, execute the workflow:
-		Pre-processing: Click to run the pre-processing module. The script will automatically read the .inp file, classify boundary nodes, and apply constraints.
-		Homogenization Solver: After pre-processing is complete, run the solver. The computation will proceed automatically in the background. Upon completion, 
-			a .txt file containing the equivalent effective properties (Stiffness Tensor) will be generated in the "your input file directory\\NIAH_CH_txt".
-		Stiffness Visualization: (Under Development / Coming Soon) A standalone module to generate 3D directional Young's modulus distribution surfaces and 2D radar charts for ABD matrices.
+See [REPRODUCIBILITY.md](reproducibility/REPRODUCIBILITY.md) for model groups, integrity checks, and release-validation status.
 
-<div align="center">
-<img src="https://github.com/dagongren23/NIAH-Homogenization-Abaqus/blob/main/images/visualizationGUI.png" width="800" />
-</div>
+## Ordinary Python checks
 
-## 📄 CitationIf 
+From the repository root, run:
 
-you find this plug-in helpful in your research, please consider citing our work:
+```text
+cd "NIAH Abaqus Plugin"
+python -m unittest discover -s tests -p "test_*.py"
+```
 
-@article{YourCitationKey2026,
-  title={A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations},
-  author={Liu, Zhihui Nie, Yinghao and Niu, Bin},
-  journal={Composite Structures},
-  year={2026},
-  publisher={Elsevier}
-}(We will update the citation details once the paper is officially published)
+These checks do not import or launch Abaqus. Dynamic Abaqus regression requires a licensed Abaqus installation and should be completed by the release owner before creating a versioned release tag.
 
-## ✉️ Contact
-For any questions, issues, or source code requests for secondary development, please feel free to reach out:
-Email: 320514030@mail.dlut.edu.cn
+## Provenance and attribution
+
+The periodic boundary-condition implementation is an independent implementation of standard PBC kinematics and the NIAH workflow. Boundary classification and coordinate matching are isolated in an Abaqus-independent module. EasyPBC source code is not included.
+
+Related literature acknowledged in the source:
+
+- Omairey, Dunning, and Sriramula, “Development of an Abaqus plugin tool for periodic RVE homogenisation,” *Engineering with Computers* 35 (2019) 567–577. https://doi.org/10.1007/s00366-018-0616-4
+
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [OPEN_SOURCE_CODE_AUDIT.md](docs/OPEN_SOURCE_CODE_AUDIT.md).
+
+## Citation
+
+Until the article record is final, cite this repository using the metadata in [`CITATION.cff`](CITATION.cff). The manuscript title is:
+
+> A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations
+
+## License
+
+The repository is released under the [MIT License](LICENSE). Abaqus is a product of Dassault Systèmes and is not distributed with this repository.
