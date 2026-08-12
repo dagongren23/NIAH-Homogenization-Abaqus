@@ -6,9 +6,6 @@ This module is an independent implementation based on standard periodic
 boundary-condition kinematics and the NIAH workflow. Boundary classification
 and node matching are implemented without Abaqus dependencies in
 ``periodic_mesh.py``.
-
-Related literature: Omairey, Dunning, and Sriramula, Engineering with
-Computers 35 (2019), 567-577. EasyPBC source is not included here.
 """
 from __future__ import print_function
 

@@ -6,7 +6,7 @@ are deliberately separated from Abaqus model mutation so that correspondence
 logic can be unit-tested in a normal Python interpreter.
 
 This is an independent NIAH implementation of standard periodic-mesh
-classification and coordinate matching.  It does not contain EasyPBC source.
+classification and coordinate matching.
 """
 from __future__ import print_function
 

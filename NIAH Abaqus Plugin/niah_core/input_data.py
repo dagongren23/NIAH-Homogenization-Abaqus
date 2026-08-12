@@ -2,12 +2,6 @@
 """
 Refactored input layer for NIAH.
 This module replaces the original hard-coded getinput() editing workflow.
-
-Design goals:
-1) GUI and script mode share the same input normalization logic.
-2) Paths are anchored to the plugin directory, not to os.getcwd().
-3) All runtime-relevant folders are created under one controlled workbench.
-4) Existing downstream code can still consume a tuple if needed.
 """
 
 from __future__ import print_function
