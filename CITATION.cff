@@ -1,7 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the associated manuscript and this repository."
+message: "If you use this software, please cite the associated article."
 title: "NIAH Homogenization for Abaqus"
 type: software
+
 authors:
   - family-names: Liu
     given-names: Zhihui
@@ -9,17 +10,38 @@ authors:
     given-names: Yinghao
   - family-names: Niu
     given-names: Bin
+
 license: MIT
 version: 1.0.0-rc1
 date-released: 2026-08-08
+
 repository-code: "https://github.com/dagongren23/NIAH-Homogenization-Abaqus"
+
 abstract: >-
   A unified open-source Abaqus-Python plug-in integrating established
   three-dimensional periodic homogenization and Reissner-Mindlin plate
   homogenization formulations in an automated workflow.
+
 keywords:
   - asymptotic homogenization
   - periodic boundary conditions
   - Abaqus
   - representative volume element
   - Reissner-Mindlin plate
+
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Liu
+      given-names: Zhihui
+    - family-names: Nie
+      given-names: Yinghao
+    - family-names: Niu
+      given-names: Bin
+  title: >-
+    A unified computational framework for asymptotic homogenization of
+    periodic microstructures: 3D and Reissner-Mindlin plate numerical
+    implementations
+  journal: "Composite Structures"
+  year: 2026
+  doi: "10.1016/j.compstruct.2026.120827"

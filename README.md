@@ -63,9 +63,11 @@ See [REPRODUCIBILITY.md](reproducibility/REPRODUCIBILITY.md) for model groups, e
 
 ## Citation
 
-Until the article record is final, cite this repository using the metadata in [`CITATION.cff`](CITATION.cff). The manuscript title is:
+If you use this framework in your research, please cite the associated article:
 
-> A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations
+> Liu Z, Nie Y, Niu B. A unified computational framework for asymptotic homogenization of periodic microstructures: 3D and Reissner–Mindlin plate numerical implementations. Composite Structures. 2026;120827. https://doi.org/10.1016/j.compstruct.2026.120827
+
+Citation metadata are also provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
